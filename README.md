@@ -1,0 +1,2 @@
+# myLook
+An interview project

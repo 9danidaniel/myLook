@@ -5,6 +5,7 @@ import {
     StatusBar,
     ScrollView,
 } from 'react-native';
+import ClothingCard from "../../../components/ClothingCard/ClothingCard";
 import styles from './styles'
 
 const ShirtListScreen = ({ navigation }) => {
@@ -16,7 +17,14 @@ const ShirtListScreen = ({ navigation }) => {
                 barStyle={'dark-content'}
                 backgroundColor={'#C7B98B'}
             />
-            <Text>this is my shirt screen</Text>
+           <ClothingCard 
+           onCardPress={()=> navigation.navigate('PantsList')}
+           brand='Lacoste'
+           size='XXL'
+           color='yellow'
+           imgSrc={require('../../../../assets/images/generic-shirt.jpeg')}
+           />
+           
         </View>
     )
 }

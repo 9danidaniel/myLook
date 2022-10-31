@@ -8,9 +8,8 @@ const styles = StyleSheet.create({
        
     },
     savedNumText: {
-        color: '#2A2B2A',
-        fontSize: 17,
         color: '#fff',
+        fontSize: 17,
         padding: 10,
         textAlign: 'center'
     },

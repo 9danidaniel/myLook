@@ -25,22 +25,22 @@ const Home = ({ navigation }) => {
         <SavedCounter 
           count={12} 
           onCounterPressed={onCounterClick}
-          title={'sets'}
+          title={'sets saved'}
           />
            <SavedCounter 
           count={22} 
           onCounterPressed={onCounterClick}
-          title={'shirts'}
+          title={'shirts in stock'}
           />
            <SavedCounter 
           count={11} 
           onCounterPressed={onCounterClick}
-          title={'pants'}
+          title={'pants in stock'}
           />
            <SavedCounter 
           count={32} 
           onCounterPressed={onCounterClick}
-          title={'shoes'}
+          title={'shoes in stock'}
           />
         </ScrollView>
          

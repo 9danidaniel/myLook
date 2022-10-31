@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     btn: {
-        //backgroundColor: '#2A2B2A',
+        flexDirection: 'row',
         marginTop: 10,
         padding: 25,
         opacity: 0.9,
@@ -15,22 +15,26 @@ const styles = StyleSheet.create({
         backgroundColor: '#C7B98B',
         borderColor: '#2A2B2A'
     },
+    btnIcon: {
+        height: 40,
+        width: 40
+    },
     btnText: {
+        marginLeft: 20,
         color: '#2A2B2A',
         fontSize: 25,
         fontWeight: 'bold',
     },
     txt: {
-        color: '#2A2B2A',
-        fontSize: 30,
-        marginTop: 70,
-        marginLeft: 50,
-        marginRight: 50,
-        opacity: 0.3,
+        color: '#C7B98B',
+        fontSize: 25,
+        marginTop: 50,
         textAlign: 'center',
-        //fontWeight: 'bold',
+    },
+    nameInput: {
+        fontSize: 30,
+        color: '#2A2B2A',
     }
-    
 
 });
 

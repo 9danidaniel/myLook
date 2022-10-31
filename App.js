@@ -33,6 +33,7 @@ const Tab = createBottomTabNavigator();
 function HomeFlow() {
   return (
     <Tab.Navigator screenOptions={{
+      initialRouteName: 'Home',
       headerStyle: styles.headerStyle,
       headerTintColor: '#2A2B2A',
       tabBarActiveTintColor: '#fff',
@@ -63,10 +64,10 @@ function HomeFlow() {
 function CreateSetFlow() {
   return (
     <Stack.Navigator screenOptions={{headerStyle: styles.headerStyle, headerTitleStyle: {fontSize: 30}, headerTintColor: '#2A2B2A',}}>
-      <Stack.Screen name="ChooseType" component={ChooseType} options={{headerTitle:'choose type'}} />
-      <Stack.Screen name="ShirtList" component={ShirtListScreen} options={{headerTitle:'shirts'}}/>
-      <Stack.Screen name="PantsList" component={PantsListScreen} options={{headerTitle:'pants'}}/>
-      <Stack.Screen name="ShoesList" component={ShoesListScreen} options={{headerTitle:'shoes'}}/>
+      <Stack.Screen name="ChooseType" component={ChooseType} options={{headerTitle:'create a new set'}} />
+      <Stack.Screen name="ShirtList" component={ShirtListScreen} options={{headerTitle:'add new shirt'}}/>
+      <Stack.Screen name="PantsList" component={PantsListScreen} options={{headerTitle:'add new pants'}}/>
+      <Stack.Screen name="ShoesList" component={ShoesListScreen} options={{headerTitle:'add new shoes'}}/>
     </Stack.Navigator>
   );
 }

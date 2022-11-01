@@ -10,18 +10,17 @@ const styles = StyleSheet.create({
     brandStyle: {
         color: '#fff',
         fontWeight: 'bold',
-        fontSize: 25,
+        fontSize: 22,
         marginLeft: 10,
     },
     propertyStyle: {
         marginTop: 3,
         marginLeft: 10,
         color: '#fff',
-        fontSize: 17,
+        fontSize: 15,
     },
     
     imgLogo: {
-        marginLeft: 145,
         borderRadius: 5,
         width: 70,
         height: 85,

@@ -25,31 +25,42 @@ const ChooseType = ({ navigation }) => {
                 backgroundColor={'#C7B98B'}
             />
             {/* Name of set */}
-            <TextInput 
-            autoFocus
-            placeholder="enter name of set" 
-            style={styles.nameInput} 
-            onChangeText={onChangeName}
-            value={nameValue} />
+            <TextInput
+                autoFocus
+                focusable
+                placeholderTextColor={'lightgrey'}
+                placeholder="enter name of set"
+                style={styles.nameInput}
+                onChangeText={onChangeName}
+                value={nameValue} />
 
 
             {/* Buttons */}
             <View>
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ShirtList', nameSet=nameValue)}>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ShirtList', {
+                    nameSet: nameValue,
+                    index: 0
+                })}>
                     <Image
                         style={styles.btnIcon}
                         source={require('../../../../assets/images/shirt.png')}
                     />
                     <Text style={styles.btnText}>add a new shirt</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('PantsList', nameSet=nameValue)}>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('PantsList', {
+                    nameSet: nameValue,
+                    index: 0
+                })}>
                     <Image
                         style={styles.btnIcon}
                         source={require('../../../../assets/images/pants.png')}
                     />
                     <Text style={styles.btnText}>add new pants</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ShoesList', nameSet=nameValue)}>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ShoesList', {
+                    nameSet: nameValue,
+                    index: 0
+                })}>
                     <Image
                         style={styles.btnIcon}
                         source={require('../../../../assets/images/shoes.png')}

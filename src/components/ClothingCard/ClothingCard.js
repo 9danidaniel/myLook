@@ -14,9 +14,9 @@ const ClothingCard = ({
     return (
         <TouchableOpacity style={styles.container} onPress={onCardPress}>
            <View style={{flexDirection: 'row'}}>
-                <View>
+                <View style={{flex: 1}}>
                     <Text style={styles.brandStyle}>{brand}</Text>
-                    <Text style={styles.propertyStyle}>{size}</Text>
+                    <Text style={styles.propertyStyle}>Size: {size}</Text>
                     <Text style={styles.propertyStyle}>{color}</Text>
                 </View>
                 <Image style={styles.imgLogo} source={imgSrc} resizeMode='contain' />

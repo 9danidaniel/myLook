@@ -8,7 +8,7 @@ import {
   useColorScheme,
   StatusBar
 } from 'react-native';
-import { applyLTR } from './src/utils/i18n'
+import applyLTR from './src/utils/i18n'
 
 //Vector Icons
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons'
@@ -63,7 +63,7 @@ function HomeFlow() {
 }
 function CreateSetFlow() {
   return (
-    <Stack.Navigator screenOptions={{headerStyle: styles.headerStyle, headerTitleStyle: {fontSize: 30}, headerTintColor: '#2A2B2A',}}>
+    <Stack.Navigator initialRouteName='ChooseType'  screenOptions={{headerStyle: styles.headerStyle, headerTitleStyle: {fontSize: 30}, headerTintColor: '#2A2B2A',}}>
       <Stack.Screen name="ChooseType" component={ChooseType} options={{headerTitle:'create a new set'}} />
       <Stack.Screen name="ShirtList" component={ShirtListScreen} options={{headerTitle:'add new shirt'}}/>
       <Stack.Screen name="PantsList" component={PantsListScreen} options={{headerTitle:'add new pants'}}/>
@@ -74,6 +74,7 @@ function CreateSetFlow() {
 
 
 const App: () => Node = () => {
+  
   applyLTR
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -90,6 +91,7 @@ const App: () => Node = () => {
           />
          <Stack.Screen
           name="CreateSetFlow"
+          initialParams={'ChooseType'}
           component={CreateSetFlow}
           options={{ headerShown: false }}
         />  

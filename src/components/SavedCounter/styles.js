@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
     },
     savedNumText: {
         color: '#fff',
-        fontSize: 17,
-        padding: 10,
+        fontSize: 15,
+        padding: 12,
         textAlign: 'center'
     },
     savedCountText: {

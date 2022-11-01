@@ -4,9 +4,12 @@ import {
     View,
     StatusBar,
     ScrollView,
+    FlatList
 } from 'react-native';
 import SetCard from "../../components/SetCard/SetCard";
+import SavedSetsList from "../../data/SavedSetsList";
 import styles from './styles'
+
 
 const DemiSet = 
     { 
@@ -49,30 +52,29 @@ const SavedSets = ({ navigation }) => {
                 backgroundColor={'#C7B98B'}
             />
 
-            <SetCard
+            {/* <SetCard
                 shirt={DemiSet.clothes[0]}
                 pants={DemiSet.clothes[1]}
                 shoes={DemiSet.clothes[2]}
                 nameOfSet={'Sunday School'}
             />
+ */}
 
-
-            {/* <FlatList
-                data={shirtData.filter(item => item.type === "shirt")}
-                keyExtractor={(item) => item.id.toString()}
+            <FlatList
+                data={SavedSetsList}
+                keyExtractor={(item) => item.id}
                 renderItem={({ item }) => {
                     return (
-                        <ClothingCard
-                            onCardPress={() => onNavigate()}
-                            brand={item.brand}
-                            size={item.size}
-                            color={item.color}
-                            imgSrc={require('../../../../assets/images/generic-shirt.jpeg')}
+                        <SetCard
+                        nameOfSet={item.name}
+                        shirt={item.clothes[0]}
+                        pants={item.clothes[1]}
+                        shoes={item.clothes[2]}
                         />
                     )
 
                 }}
-            /> */}
+            />
         </View>
     )
 }

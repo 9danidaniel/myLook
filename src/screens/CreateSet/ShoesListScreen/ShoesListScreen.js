@@ -7,16 +7,16 @@ import {
     FlatList
 } from 'react-native';
 import ClothingCard from "../../../components/ClothingCard/ClothingCard";
+import SavedSetsList from "../../../data/SavedSetsList";
 import styles from './styles'
+
 
 const URL = "https://run.mocky.io/v3/2d06d2c1-5a77-4ecd-843a-53247bcb0b94"
 
 const ShoesListScreen = ({ route, navigation }) => {
-    const { index } = route.params;
+    const { index, shirtId, pantsId, setname, date } = route.params;
 
-    const [shoesData, setShoesData] = useState([])
-
-
+    const [data, setShoesData] = useState([])
     useEffect(() => {
         const fetchShoes = async () => {
 
@@ -41,12 +41,44 @@ const ShoesListScreen = ({ route, navigation }) => {
     }, [])
 
 
-    const onNavigate = () => {
+    addSet = () => {
+      
+    }
+    
+    const onNavigate = (id, color, size, brand) => {
         if (index == 0) {
-            navigation.navigate('ShirtList', { index: 1, shoes: true })
+            navigation.navigate('ShirtList', { index: 1, shoes: true, shoesId: id, pantsId: pantsId, setname: setname, date })
         } else if (index == 1) {
-            navigation.navigate('PantsList', { index: 2 })
+            navigation.navigate('PantsList', { index: 2, shoesId: id , pantsId: pantsId, setname: setname, date })
         } else if (index == 2) {
+            const newItem = {
+                "name": setname,
+                "date": date,
+                "clothes": [
+                     {
+                         "id": shirtId,
+                         "type": "shirt",
+                         "color": data[shirtId-1].color,
+                         "size": data[shirtId-1].size,
+                         "brand": data[shirtId-1].brand
+                       },
+                     {
+                         "id": pantsId,
+                         "type": "pants",
+                         "color": data[pantsId-1].color,
+                         "size": data[pantsId-1].size,
+                         "brand": data[pantsId-1].brand
+                     },
+                     {  
+                        "id": id,
+                        "type": "shoes",
+                        "color": color,
+                        "size": size,
+                        "brand": brand
+                       },
+                    ]
+               }
+               SavedSetsList.push(newItem)
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Home' }],
@@ -61,12 +93,14 @@ const ShoesListScreen = ({ route, navigation }) => {
                 backgroundColor={'#C7B98B'}
             />
             <FlatList
-                data={shoesData.filter(item => item.type === "shoes")}
+                data={data.filter(item => item.type === "shoes")}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => {
                     return (
                         <ClothingCard
-                            onCardPress={() => onNavigate()}
+                            onCardPress={() => {
+                                onNavigate(item.id,item.color,item.size,item.brand)
+                            }}
                             brand={item.brand}
                             size={item.size}
                             color={item.color}

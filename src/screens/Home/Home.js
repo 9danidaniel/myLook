@@ -31,19 +31,19 @@ const Home = ({ navigation }) => {
                 <SavedCounter
                     imgSrc={require('../../../assets/images/shirts.png')}
                     count={22}
-                    onCounterPressed={() => navigation.navigate('CreateSet', 'shirts')}
+                    onCounterPressed={() => navigation.navigate('CreateSet', {type:'shirts'})}
                     title={'shirts in stock'}
                 />
                 <SavedCounter
                     imgSrc={require('../../../assets/images/pants.png')}
                     count={11}
-                    onCounterPressed={() => navigation.navigate('CreateSet', 'pants')}
+                    onCounterPressed={() => navigation.navigate('CreateSet', {type:'pants'})}
                     title={'pants in stock'}
                 />
                 <SavedCounter
                     imgSrc={require('../../../assets/images/shoes.png')}
                     count={32}
-                    onCounterPressed={() => navigation.navigate('CreateSet', 'shoes')}
+                    onCounterPressed={() => navigation.navigate('CreateSet', {type:'shoes'})}
                     title={'shoes in stock'}
                 />
             </ScrollView>

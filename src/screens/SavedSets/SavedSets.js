@@ -11,39 +11,31 @@ import SavedSetsList from "../../data/SavedSetsList";
 import styles from './styles'
 
 
-const DemiSet = 
-    { 
-       "name": "Sunday Vibe",
-       "date": "22/02/2020",
-       "minutes": 10,
-       "secondes": 5,
-       "clothes": [
-            {
-                "id": 22,
-                "type": "shirt",
-                "color": "white",
-                "size": "XL",
-                "brand": "Calvin Klein"
-              },
-            {
-                "id": 34,
-                "type": "pants",
-                "color": "green",
-                "size": 34,
-                "brand": "Lacoste"
-            },
-            {
-                "id": 1,
-                "type": "shoes",
-                "color": "black",
-                "size": 37,
-                "brand": "Tommy Hilfiger"
-              },
-        ]
-    }
-
 const SavedSets = ({ navigation }) => {
-    //const { } = route.params;
+    const getData = async () => {
+        try {
+          const jsonValue = await AsyncStorage.getItem('set_list')
+          return jsonValue != null ? JSON.parse(jsonValue) : null;
+        } catch(e) {
+         
+        }
+      }
+
+      useEffect(() => {
+        if(SavedSetsList == []){
+            SavedSetsList.push(getData)
+        }
+      }, [])
+      
+
+      const isDataSaved = () => {
+        if(SavedSetsList = []){
+            SavedSetsList.push(getData)
+            return SavedSetsList
+        }else{
+            return SavedSetsList
+        }
+      }
    
     return (
         <View style={styles.mainContainer}>
@@ -51,14 +43,6 @@ const SavedSets = ({ navigation }) => {
                 barStyle={'dark-content'}
                 backgroundColor={'#C7B98B'}
             />
-
-            {/* <SetCard
-                shirt={DemiSet.clothes[0]}
-                pants={DemiSet.clothes[1]}
-                shoes={DemiSet.clothes[2]}
-                nameOfSet={'Sunday School'}
-            />
- */}
 
             <FlatList
                 data={SavedSetsList}

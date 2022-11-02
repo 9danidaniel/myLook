@@ -9,6 +9,7 @@ import {
 import ClothingCard from "../../../components/ClothingCard/ClothingCard";
 import SavedSetsList from "../../../data/SavedSetsList";
 import styles from './styles'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const URL = "https://run.mocky.io/v3/2d06d2c1-5a77-4ecd-843a-53247bcb0b94"
 
@@ -16,8 +17,7 @@ const PantsListScreen = ({ route, navigation }) => {
     const { index, shirtId, pantsId, shoesId, setname, date } = route.params;
 
     const [data, setPantsData] = useState([])
-
-
+    
     useEffect(() => {
         const fetchPants = async () => {
             try {
@@ -37,8 +37,17 @@ const PantsListScreen = ({ route, navigation }) => {
 
         }
         fetchPants();
-
     }, [])
+
+    const storeSetList = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value)
+            await AsyncStorage.setItem('set_list', jsonValue)
+          } catch (e) {
+            // saving error
+          }
+      }
+
 
     const onNavigate = (id, color, size, brand) => {
         if (index == 0) {
@@ -74,6 +83,7 @@ const PantsListScreen = ({ route, navigation }) => {
                     ]
                }
                SavedSetsList.push(newItem)
+               storeSetList(SavedSetsList)
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Home' }],

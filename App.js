@@ -21,6 +21,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './src/screens/Home/Home';
 import SavedSets from './src/screens/SavedSets/SavedSets';
 import ChooseType from './src/screens/CreateSet/ChooseType/ChooseType';
+
+//TODO UNITE 3 SCREENS TO ONE SCREEN
 import ShirtListScreen from './src/screens/CreateSet/ShirtListScreen/ShirtListScreen'
 import PantsListScreen from './src/screens/CreateSet/PantsListScreen/PantsListScreen'
 import ShoesListScreen from './src/screens/CreateSet/ShoesListScreen/ShoesListScreen'

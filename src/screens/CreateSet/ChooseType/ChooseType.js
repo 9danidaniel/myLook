@@ -14,7 +14,7 @@ import { Stopwatch } from 'react-native-stopwatch-timer';
 import { useFocusEffect } from '@react-navigation/native';
 
 const ChooseType = ({ navigation }) => {
-    
+
     //const { } = route.params;
     const [nameValue, setNameValue] = useState('')
     const [isStopwatchStart, setIsStopwatchStart] = useState(false);
@@ -25,9 +25,9 @@ const ChooseType = ({ navigation }) => {
 
     }
     onSubmitName = () => {
-        
+
     }
-    
+
 
     return (
         <View style={styles.mainContainer}>
@@ -43,7 +43,7 @@ const ChooseType = ({ navigation }) => {
                 placeholderTextColor={'lightgrey'}
                 placeholder="enter name of set"
                 style={styles.nameInput}
-                onChangeText={(value)=>onChangeName(value)}
+                onChangeText={(value) => onChangeName(value)}
                 value={nameValue} />
 
 

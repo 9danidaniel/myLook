@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState, useEffect } from "react";
 import {
     Text,
@@ -9,6 +10,7 @@ import SavedCounter from "../../components/SavedCounter/SavedCounter";
 import SavedSetsList from "../../data/SavedSetsList";
 import styles from './styles'
 
+
 const URL = "https://run.mocky.io/v3/2d06d2c1-5a77-4ecd-843a-53247bcb0b94"
 
 const Home = ({ navigation }) => {
@@ -18,6 +20,35 @@ const Home = ({ navigation }) => {
     const [dataPants, setPData] = useState([]);
     const [dataShoes, setShData] = useState([]);
 
+    const [isReceivedData, setIsReceivedData] = useState(null)
+
+    const getData = async () => {
+        try {
+            const value = await AsyncStorage.getItem('set_list');
+            if (value !== null) {
+                setIsReceivedData(true)
+                // We have data!!
+                const saved = JSON.parse(value);
+                SavedSetsList.push(...saved);
+                console.log('Get ', JSON.stringify(saved))
+                //console.log(JSON.stringify(value));
+            }
+        } catch (e) {
+            setIsReceivedData(false)
+            console.log(e)
+        }
+    }
+
+    const storeSetList = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value)
+            console.log('saved ', jsonValue )
+            await AsyncStorage.setItem('set_list', jsonValue)
+           
+        } catch (e) {
+            // saving error
+        }
+    }
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -40,9 +71,16 @@ const Home = ({ navigation }) => {
             }
 
         }
+        if (SavedSetsList.length === 0) {
+            // storeSetList(...SavedSetsList)
+            getData();
+        } else {
+            //console.log(JSON.stringify(SavedSetsList))
+            //storeSetList(...SavedSetsList)
+        }
         fetchItems();
-
-    },[])
+        //console.log(JSON.stringify(SavedSetsList))
+    }, []);
 
     return (
         <View style={styles.mainContainer}>
@@ -60,19 +98,19 @@ const Home = ({ navigation }) => {
                 <SavedCounter
                     imgSrc={require('../../../assets/images/shirts.png')}
                     count={dataShirts.length}
-                    onCounterPressed={() => navigation.navigate('CreateSet', {type:'shirts'})}
+                    onCounterPressed={() => navigation.navigate('CreateSet', { type: 'shirts' })}
                     title={'shirts in stock'}
                 />
                 <SavedCounter
                     imgSrc={require('../../../assets/images/pants.png')}
                     count={dataPants.length}
-                    onCounterPressed={() => navigation.navigate('CreateSet', {type:'pants'})}
+                    onCounterPressed={() => navigation.navigate('CreateSet', { type: 'pants' })}
                     title={'pants in stock'}
                 />
                 <SavedCounter
                     imgSrc={require('../../../assets/images/shoes.png')}
                     count={dataShoes.length}
-                    onCounterPressed={() => navigation.navigate('CreateSet', {type:'shoes'})}
+                    onCounterPressed={() => navigation.navigate('CreateSet', { type: 'shoes' })}
                     title={'shoes in stock'}
                 />
             </ScrollView>

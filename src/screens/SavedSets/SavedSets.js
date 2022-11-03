@@ -9,45 +9,49 @@ import {
 import SetCard from "../../components/SetCard/SetCard";
 import SavedSetsList from "../../data/SavedSetsList";
 import styles from './styles'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const SavedSets = ({ navigation }) => {
-    const getData = async () => {
-        try {
-          const jsonValue = await AsyncStorage.getItem('set_list')
-          return jsonValue != null ? JSON.parse(jsonValue) : null;
-        } catch(e) {
-         
-        }
-      }
+
+    const [isReceivedData, setIsReceivedData] = useState(null)
+
+    // const getData = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem('set_list');
+    //         if (value !== null) {
+    //             setIsReceivedData(true)
+    //           // We have data!!
+    //           const saved = JSON.parse(value)
+    //           SavedSetsList.push({...saved})
+
+    //           console.log(...SavedSetsList);
+    //         }
+    //     } catch(e) {
+    //         setIsReceivedData(false)
+    //      console.log(e)
+    //     }
+    //   }
 
       useEffect(() => {
-        if(SavedSetsList == []){
-            SavedSetsList.push(getData)
-        }
-      }, [])
-      
-
-      const isDataSaved = () => {
-        if(SavedSetsList = []){
-            SavedSetsList.push(getData)
-            return SavedSetsList
+        if (SavedSetsList == []){
+            setIsReceivedData(false)
         }else{
-            return SavedSetsList
+            setIsReceivedData(true)
         }
-      }
-   
+      },[])
+      
     return (
         <View style={styles.mainContainer}>
             <StatusBar
                 barStyle={'dark-content'}
                 backgroundColor={'#C7B98B'}
             />
-
+        { isReceivedData &&
             <FlatList
                 data={SavedSetsList}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => {
+                keyExtractor={(item, index) => item.id}
+                renderItem={({ item, index }) => {
                     return (
                         <SetCard
                         nameOfSet={item.name}
@@ -59,6 +63,7 @@ const SavedSets = ({ navigation }) => {
 
                 }}
             />
+            } 
         </View>
     )
 }

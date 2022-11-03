@@ -10,6 +10,7 @@ import ClothingCard from "../../../components/ClothingCard/ClothingCard";
 import SavedSetsList from "../../../data/SavedSetsList";
 import styles from './styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import uuid from 'react-native-uuid';
 
 const URL = "https://run.mocky.io/v3/2d06d2c1-5a77-4ecd-843a-53247bcb0b94"
 
@@ -44,18 +45,19 @@ const PantsListScreen = ({ route, navigation }) => {
             const jsonValue = JSON.stringify(value)
             await AsyncStorage.setItem('set_list', jsonValue)
           } catch (e) {
-            // saving error
+            console.log(e)
           }
       }
 
 
-    const onNavigate = (id, color, size, brand) => {
+    const onNavigate = async (id, color, size, brand) => {
         if (index == 0) {
             navigation.navigate('ShirtList', { index: 1, shirtId: shirtId, shoesId: shoesId, pantsId: id, setname: setname, date })
         } else if (index == 1) {
             navigation.navigate('ShoesList', { index: 2, shirtId: shirtId, pantsId: id, setname: setname, date })
         } else if (index == 2) {
-            const newItem = {
+            const newSet = {
+                "id": uuid.v4().toString(),
                 "name": setname,
                 "date": date,
                 "clothes": [
@@ -82,12 +84,13 @@ const PantsListScreen = ({ route, navigation }) => {
                     },
                     ]
                }
-               SavedSetsList.push(newItem)
-               storeSetList(SavedSetsList)
+               SavedSetsList.push(newSet)
+               await storeSetList(SavedSetsList)
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Home' }],
             });
+
         }
     }
 

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 10,
+        marginTop: 15,
         backgroundColor: '#2A2B2A',
         borderRadius: 10
        
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     savedNumText: {
         color: '#fff',
         fontSize: 15,
-        padding: 12,
+        padding: 10,
         textAlign: 'center'
     },
     savedCountText: {
@@ -27,8 +27,9 @@ const styles = StyleSheet.create({
     counterContainer: {
         flexDirection: 'row',
         backgroundColor: '#C7B98B',
-        borderRadius: 5,
-        padding: 5,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+        padding: 10,
         justifyContent: 'center',
         alignItems: 'center'
     }

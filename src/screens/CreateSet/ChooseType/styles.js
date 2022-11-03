@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     nameInput: {
         fontSize: 30,
         color: '#2A2B2A',
+        padding: 10,
     }
 
 });

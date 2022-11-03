@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
         color: '#2A2B2A',
         padding: 10,
     }
-
 });
 
 export default styles

@@ -15,7 +15,7 @@ import styles from './styles'
 
 const URL = "https://run.mocky.io/v3/2d06d2c1-5a77-4ecd-843a-53247bcb0b94"
 
-const Home = ({ navigation}) => {
+const Home = ({ navigation }) => {
     const [data, setData] = useState([]);
     const [dataShirts, setSData] = useState([]);
     const [dataPants, setPData] = useState([]);
@@ -62,9 +62,9 @@ const Home = ({ navigation}) => {
             }
 
         }
-        if (SavedSetsList.length === 0) { 
+        if (SavedSetsList.length === 0) {
             getData();
-        }else{
+        } else {
             setModalVisible(true)
         }
         fetchItems();
@@ -77,10 +77,10 @@ const Home = ({ navigation}) => {
                 backgroundColor={'#C7B98B'}
             />
             <ScrollView>
-                { modalVisible &&
-                <TouchableOpacity style={styles.popupStyle} onPress={()=> setModalVisible(!modalVisible)}>
-                     <Text style={styles.popupText}>New Set Added!</Text>
-                </TouchableOpacity>
+                {modalVisible &&
+                    <TouchableOpacity style={styles.popupStyle} onPress={() => setModalVisible(!modalVisible)}>
+                        <Text style={styles.popupText}>New Set Added!</Text>
+                    </TouchableOpacity>
                 }
                 <SavedCounter
                     imgSrc={require('../../../assets/images/hanger.png')}

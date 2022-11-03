@@ -14,18 +14,14 @@ import { Stopwatch } from 'react-native-stopwatch-timer';
 import { useFocusEffect } from '@react-navigation/native';
 
 const ChooseType = ({ navigation }) => {
-
-    //const { } = route.params;
     const [nameValue, setNameValue] = useState('')
-    const [isStopwatchStart, setIsStopwatchStart] = useState(false);
-    const [resetStopwatch, setResetStopwatch] = useState(false);
 
     onChangeName = (value) => {
         setNameValue(value)
 
     }
     onSubmitName = () => {
-
+        //TODO ADD NAVIGATION TO TYPE OF CLOTHING CLICKED FROM HOME SCREEN
     }
 
 

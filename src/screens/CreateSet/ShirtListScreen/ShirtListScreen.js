@@ -17,7 +17,7 @@ const URL = "https://run.mocky.io/v3/2d06d2c1-5a77-4ecd-843a-53247bcb0b94"
 const ShirtListScreen = ({ route, navigation }) => {
     const { index, shoes, shirtId, pantsId, shoesId, setname, date } = route.params;
     const [data, setShirtData] = useState([])
-    
+
 
     useEffect(() => {
         const fetchShirts = async () => {
@@ -46,10 +46,10 @@ const ShirtListScreen = ({ route, navigation }) => {
         try {
             const jsonValue = JSON.stringify(value)
             await AsyncStorage.setItem('set_list', jsonValue)
-          } catch (e) {
+        } catch (e) {
             console.log(e)
-          }
-      }
+        }
+    }
 
 
     const onNavigate = async (id, color, size, brand) => {
@@ -66,31 +66,31 @@ const ShirtListScreen = ({ route, navigation }) => {
                 "name": setname,
                 "date": date,
                 "clothes": [
-                    {  
+                    {
                         "id": id,
                         "type": "shirt",
                         "color": color,
                         "size": size,
                         "brand": brand
-                       },
-                     {
-                         "id": pantsId,
-                         "type": "pants",
-                         "color": data[pantsId-1].color,
-                         "size": data[pantsId-1].size,
-                         "brand": data[pantsId-1].brand
-                     },
-                     {
+                    },
+                    {
+                        "id": pantsId,
+                        "type": "pants",
+                        "color": data[pantsId - 1].color,
+                        "size": data[pantsId - 1].size,
+                        "brand": data[pantsId - 1].brand
+                    },
+                    {
                         "id": shoesId,
                         "type": "shoes",
-                        "color": data[shoesId-1].color,
-                        "size": data[shoesId-1].size,
-                        "brand": data[shoesId-1].brand
+                        "color": data[shoesId - 1].color,
+                        "size": data[shoesId - 1].size,
+                        "brand": data[shoesId - 1].brand
                     },
-                    ]
-               }
-               SavedSetsList.push(newSet)
-               await storeSetList(SavedSetsList)
+                ]
+            }
+            SavedSetsList.push(newSet)
+            await storeSetList(SavedSetsList)
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Home' }],
@@ -110,7 +110,7 @@ const ShirtListScreen = ({ route, navigation }) => {
                 renderItem={({ item }) => {
                     return (
                         <ClothingCard
-                            onCardPress={() => {onNavigate(item.id,item.color,item.size,item.brand)}}
+                            onCardPress={() => { onNavigate(item.id, item.color, item.size, item.brand) }}
                             brand={item.brand}
                             size={item.size}
                             color={item.color}

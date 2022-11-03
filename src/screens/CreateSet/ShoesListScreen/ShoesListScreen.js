@@ -18,7 +18,7 @@ const ShoesListScreen = ({ route, navigation }) => {
     const { index, shirtId, pantsId, setname, date } = route.params;
 
     const [data, setShoesData] = useState([])
-   
+
 
     useEffect(() => {
         const fetchShoes = async () => {
@@ -46,49 +46,49 @@ const ShoesListScreen = ({ route, navigation }) => {
     const storeSetList = async (value) => {
         try {
             const jsonValue = JSON.stringify(value);
-            console.log('saved ', jsonValue )
+            console.log('saved ', jsonValue)
             await AsyncStorage.setItem('set_list', jsonValue);
-          } catch (e) {
+        } catch (e) {
             console.log(e);
-          }
-      }
-    
+        }
+    }
+
     const onNavigate = async (id, color, size, brand) => {
         if (index == 0) {
             navigation.navigate('ShirtList', { index: 1, shoes: true, shoesId: id, pantsId: pantsId, setname: setname, date })
         } else if (index == 1) {
-            navigation.navigate('PantsList', { index: 2, shoesId: id , pantsId: pantsId, setname: setname, date })
+            navigation.navigate('PantsList', { index: 2, shoesId: id, pantsId: pantsId, setname: setname, date })
         } else if (index == 2) {
             const newSet = {
                 "id": uuid.v4().toString(),
                 "name": setname,
                 "date": date,
                 "clothes": [
-                     {
-                         "id": shirtId,
-                         "type": "shirt",
-                         "color": data[shirtId-1].color,
-                         "size": data[shirtId-1].size,
-                         "brand": data[shirtId-1].brand
-                       },
-                     {
-                         "id": pantsId,
-                         "type": "pants",
-                         "color": data[pantsId-1].color,
-                         "size": data[pantsId-1].size,
-                         "brand": data[pantsId-1].brand
-                     },
-                     {  
+                    {
+                        "id": shirtId,
+                        "type": "shirt",
+                        "color": data[shirtId - 1].color,
+                        "size": data[shirtId - 1].size,
+                        "brand": data[shirtId - 1].brand
+                    },
+                    {
+                        "id": pantsId,
+                        "type": "pants",
+                        "color": data[pantsId - 1].color,
+                        "size": data[pantsId - 1].size,
+                        "brand": data[pantsId - 1].brand
+                    },
+                    {
                         "id": id,
                         "type": "shoes",
                         "color": color,
                         "size": size,
                         "brand": brand
-                       },
-                    ]
-               };
-               SavedSetsList.push(newSet);
-               await storeSetList(SavedSetsList);
+                    },
+                ]
+            };
+            SavedSetsList.push(newSet);
+            await storeSetList(SavedSetsList);
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Home' }],
@@ -109,7 +109,7 @@ const ShoesListScreen = ({ route, navigation }) => {
                     return (
                         <ClothingCard
                             onCardPress={() => {
-                                onNavigate(item.id,item.color,item.size,item.brand)
+                                onNavigate(item.id, item.color, item.size, item.brand)
                             }}
                             brand={item.brand}
                             size={item.size}

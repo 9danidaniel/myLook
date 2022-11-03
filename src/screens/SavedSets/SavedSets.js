@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import {
     Text,
     View,
     StatusBar,
     ScrollView,
-    FlatList
+    FlatList,
+    Alert
 } from 'react-native';
 import SetCard from "../../components/SetCard/SetCard";
 import SavedSetsList from "../../data/SavedSetsList";
@@ -12,58 +13,79 @@ import styles from './styles'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
+
 const SavedSets = ({ navigation }) => {
 
     const [isReceivedData, setIsReceivedData] = useState(null)
+    const [isDeleteEnabled, setIsDeleteEnabled] = useState(null)
+    const [rerender, setRerender] = useState(false);
 
-    // const getData = async () => {
-    //     try {
-    //         const value = await AsyncStorage.getItem('set_list');
-    //         if (value !== null) {
-    //             setIsReceivedData(true)
-    //           // We have data!!
-    //           const saved = JSON.parse(value)
-    //           SavedSetsList.push({...saved})
-
-    //           console.log(...SavedSetsList);
-    //         }
-    //     } catch(e) {
-    //         setIsReceivedData(false)
-    //      console.log(e)
-    //     }
-    //   }
-
-      useEffect(() => {
-        if (SavedSetsList == []){
+    useEffect(() => {
+        if (SavedSetsList == []) {
             setIsReceivedData(false)
-        }else{
+        } else {
             setIsReceivedData(true)
         }
-      },[])
-      
+    }, [])
+
+    const storeSetList = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            console.log('saved ', jsonValue)
+            await AsyncStorage.setItem('set_list', jsonValue);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const deleteSet = (index) => {
+        Alert.alert(
+            "Delete",
+            "Are you sure you want to remove set?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                {
+                    text: "OK", onPress: () => {
+                        SavedSetsList.splice(index, 1)
+                        storeSetList(SavedSetsList)
+                        setRerender(!rerender);
+                    }
+                }
+            ]
+        );
+    }
+
+
+
     return (
         <View style={styles.mainContainer}>
             <StatusBar
                 barStyle={'dark-content'}
                 backgroundColor={'#C7B98B'}
             />
-        { isReceivedData &&
-            <FlatList
-                data={SavedSetsList}
-                keyExtractor={(item, index) => item.id}
-                renderItem={({ item, index }) => {
-                    return (
-                        <SetCard
-                        nameOfSet={item.name}
-                        shirt={item.clothes[0]}
-                        pants={item.clothes[1]}
-                        shoes={item.clothes[2]}
-                        />
-                    )
+            {isReceivedData &&
+                <FlatList
+                    data={SavedSetsList}
+                    keyExtractor={(item, index) => item.id}
+                    renderItem={({ item, index }) => {
+                        return (
+                            <SetCard
+                                onCardLongPress={() => deleteSet(index)}
+                                nameOfSet={item.name}
+                                shirt={item.clothes[0]}
+                                pants={item.clothes[1]}
+                                shoes={item.clothes[2]}
+                            />
 
-                }}
-            />
-            } 
+                        )
+
+                    }}
+                />
+            }
         </View>
     )
 }

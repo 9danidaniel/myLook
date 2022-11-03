@@ -6,8 +6,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#F8F4E3',
         flex: 1,
     },
-    
-
 });
 
 export default styles

@@ -8,7 +8,7 @@ import {
   useColorScheme,
   StatusBar
 } from 'react-native';
-import applyLTR from './src/utils/i18n'
+import { applyLTR }  from './src/utils/index'
 
 //Vector Icons
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons'

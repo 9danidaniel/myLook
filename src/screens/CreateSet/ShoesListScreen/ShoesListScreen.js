@@ -18,6 +18,8 @@ const ShoesListScreen = ({ route, navigation }) => {
     const { index, shirtId, pantsId, setname, date } = route.params;
 
     const [data, setShoesData] = useState([])
+   
+
     useEffect(() => {
         const fetchShoes = async () => {
 

@@ -5,6 +5,8 @@ import {
     View,
     StatusBar,
     ScrollView,
+    Modal,
+    TouchableOpacity
 } from 'react-native';
 import SavedCounter from "../../components/SavedCounter/SavedCounter";
 import SavedSetsList from "../../data/SavedSetsList";
@@ -13,14 +15,14 @@ import styles from './styles'
 
 const URL = "https://run.mocky.io/v3/2d06d2c1-5a77-4ecd-843a-53247bcb0b94"
 
-const Home = ({ navigation }) => {
-    //const { } = route.params;
+const Home = ({ navigation}) => {
     const [data, setData] = useState([]);
     const [dataShirts, setSData] = useState([]);
     const [dataPants, setPData] = useState([]);
     const [dataShoes, setShData] = useState([]);
 
     const [isReceivedData, setIsReceivedData] = useState(null)
+    const [modalVisible, setModalVisible] = useState(false);
 
     const getData = async () => {
         try {
@@ -36,17 +38,6 @@ const Home = ({ navigation }) => {
         } catch (e) {
             setIsReceivedData(false)
             console.log(e)
-        }
-    }
-
-    const storeSetList = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value)
-            console.log('saved ', jsonValue )
-            await AsyncStorage.setItem('set_list', jsonValue)
-           
-        } catch (e) {
-            // saving error
         }
     }
 
@@ -71,15 +62,12 @@ const Home = ({ navigation }) => {
             }
 
         }
-        if (SavedSetsList.length === 0) {
-            // storeSetList(...SavedSetsList)
+        if (SavedSetsList.length === 0) { 
             getData();
-        } else {
-            //console.log(JSON.stringify(SavedSetsList))
-            //storeSetList(...SavedSetsList)
+        }else{
+            setModalVisible(true)
         }
         fetchItems();
-        //console.log(JSON.stringify(SavedSetsList))
     }, []);
 
     return (
@@ -89,6 +77,11 @@ const Home = ({ navigation }) => {
                 backgroundColor={'#C7B98B'}
             />
             <ScrollView>
+                { modalVisible &&
+                <TouchableOpacity style={styles.popupStyle} onPress={()=> setModalVisible(!modalVisible)}>
+                     <Text style={styles.popupText}>New Set Added!</Text>
+                </TouchableOpacity>
+                }
                 <SavedCounter
                     imgSrc={require('../../../assets/images/hanger.png')}
                     count={SavedSetsList.length}

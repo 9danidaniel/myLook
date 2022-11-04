@@ -59,6 +59,15 @@ const SavedSets = ({ navigation }) => {
         );
     }
 
+    const navigateToDetails = ( name, date, clothes, time ) => {
+        navigation.navigate('SetDetail', {
+            nameSet: name,
+            date: date,
+            clothes,
+            time: time,
+        })
+    }
+
 
 
     return (
@@ -75,6 +84,12 @@ const SavedSets = ({ navigation }) => {
                         return (
                             <SetCard
                                 onCardLongPress={() => deleteSet(index)}
+                                onCardPress={() => navigateToDetails(
+                                    item.name,
+                                    item.date,
+                                    item.clothes,
+                                    "01:35"
+                                )}
                                 nameOfSet={item.name}
                                 shirt={item.clothes[0]}
                                 pants={item.clothes[1]}

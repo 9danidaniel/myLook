@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         marginTop: 15,
-        backgroundColor: '#2A2B2A',
-        borderRadius: 10
+        backgroundColor: '#514F42',
+        borderRadius: 5
        
     },
     savedNumText: {
@@ -21,15 +21,15 @@ const styles = StyleSheet.create({
         marginLeft: 15
     },
     imgLogo: {
-        width: 30,
-        height: 30,
+        width: 35,
+        height: 35,
     },
     counterContainer: {
         flexDirection: 'row',
         backgroundColor: '#C7B98B',
         borderTopLeftRadius: 5,
         borderTopRightRadius: 5,
-        padding: 10,
+        padding: 17,
         justifyContent: 'center',
         alignItems: 'center'
     }

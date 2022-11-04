@@ -85,7 +85,7 @@ const Home = ({ navigation }) => {
                 <SavedCounter
                     imgSrc={require('../../../assets/images/hanger.png')}
                     count={SavedSetsList.length}
-                    onCounterPressed={() => navigation.navigate('SavedSets', 'none')}
+                    onCounterPressed={() => navigation.navigate('Sets', 'none')}
                     title={'sets saved'}
                 />
                 <SavedCounter

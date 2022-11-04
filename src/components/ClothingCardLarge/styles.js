@@ -2,10 +2,9 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 10,
+        marginTop: 3,
         backgroundColor: '#514F42',
-        borderRadius: 8,
-        padding: 18
+        padding: 24
     },
     brandStyle: {
         color: '#fff',
@@ -17,13 +16,13 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         color: '#fff',
         opacity: 0.6,
-        fontSize: 16,
+        fontSize: 21,
     },
     
     imgLogo: {
-        borderRadius: 10,
-        width: 70,
-        height: 85,
+        borderRadius: 5,
+        width: 130,
+        height: 130,
     },
    
 });
